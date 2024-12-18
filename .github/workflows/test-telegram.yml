@@ -1,0 +1,27 @@
+name: Test Telegram
+
+on:
+    push:
+        branches: ['tele']
+    pull_request:
+        branches: ['tele']
+
+
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: send telegram message on push
+        uses: appleboy/telegram-action@master
+        with:
+          to: '1613675702'
+          token: '7048133300:AAGBCioTv9bVCgiQZBbW5dSlF8gNzr2CSg8'
+          message: |
+            ${{ github.actor }} created commit:
+            Commit message: ${{ github.event.commits[0].message }}
+            
+            Repository: ${{ github.repository }}
+            
+            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
