@@ -20,7 +20,7 @@ jobs:
         run: echo "${{secrets.ENV_PRODUCTION}}" > .env
       - run: npm i --force
       - run: npm run build
-      - name: send telegram message after build
+      - name: send telegram message after build if success
         if: success()
         uses: appleboy/telegram-action@master
         with:
@@ -32,7 +32,7 @@ jobs:
             Commit message: ${{ github.event.commits[0].message }}
             Repository: ${{ github.repository }}
           See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
-      - name: send telegram message after build
+      - name: send telegram message after build if fail
         if: failure()
         uses: appleboy/telegram-action@master
         with:

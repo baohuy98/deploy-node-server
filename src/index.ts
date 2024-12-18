@@ -70,6 +70,6 @@ const start = async () => {
   } catch (err) {
     fastify.log.error(err)
     process.exit(1)
-  } r
+  }
 }
 start()
